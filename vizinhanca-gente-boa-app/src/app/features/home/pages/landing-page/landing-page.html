@@ -1,13 +1,124 @@
+
 <header class="main-header">
   <div class="logo">Vizinhança Gente Boa</div>
   <nav>
-    <a routerLink="/auth/login" class="btn btn-secondary">Login</a>
-    <a routerLink="/auth/register" class="btn btn-primary">Cadastre-se</a>
+    <a (click)="openLoginDialog()" class="btn btn-secondary">Login</a>
+    <a (click)="openRegisterDialog()" class="btn btn-primary">Cadastre-se</a>
   </nav>
 </header>
+
 
 <main class="hero-section">
   <h1>Ajuda mútua na sua comunidade. Simples e seguro.</h1>
   <p>Peça ajuda para pequenas tarefas ou ofereça seu tempo para fortalecer sua vizinhança.</p>
-  <a routerLink="/auth/register" class="btn btn-primary btn-large">Comece agora</a>
+  <a (click)="openRegisterDialog()" class="btn btn-primary btn-large">Comece agora</a>
 </main>
+
+<section class="carousel-section">
+  <h2>Como Funciona?</h2>
+  <swiper-container
+    [slidesPerView]="1"
+    [spaceBetween]="30"
+    [loop]="true"
+    [pagination]="{ clickable: true }"
+    [navigation]="true"
+    [autoplay]="{ delay: 5000, disableOnInteraction: false }"
+  >
+    <swiper-slide>
+      <div class="slide-content">
+        <div class="slide-image">
+          <img src="assets/images/carousel/passo-1.jpg" alt="Ilustração de um pedido de ajuda sendo criado">
+        </div>
+        <div class="slide-text">
+          <h3>1. Precisa de uma mãozinha?</h3>
+          <p>Crie um pedido de ajuda detalhando o que você precisa. Pode ser qualquer coisa, desde regar as plantas até ajuda com as compras.</p>
+        </div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="slide-content reverse">
+        <div class="slide-image">
+          <img src="assets/images/carousel/passo-2.png" alt="Ilustração de uma pessoa oferecendo ajuda">
+        </div>
+        <div class="slide-text">
+          <h3>2. Ofereça sua ajuda</h3>
+          <p>Navegue pelos pedidos da sua vizinhança. Encontrou um em que pode ajudar? Ofereça-se com apenas um clique.</p>
+        </div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="slide-content">
+        <div class="slide-image">
+          <img src="assets/images/carousel/passo-3.png" alt="Ilustração de pessoas se conectando">
+        </div>
+        <div class="slide-text">
+          <h3>3. Conectem-se com segurança</h3>
+          <p>Coordene os detalhes através de comentários e ajude seu vizinho. A plataforma facilita a comunicação.</p>
+        </div>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="slide-content reverse">
+        <div class="slide-image">
+          <img src="assets/images/carousel/passo-4.png" alt="Ilustração de uma comunidade forte">
+        </div>
+        <div class="slide-text">
+          <h3>4. Fortaleça sua comunidade</h3>
+          <p>Cada pequena ajuda constrói uma vizinhança mais forte, segura e amigável para todos.</p>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</section> 
+
+<section class="benefits-section">
+  <div class="container">
+    <h2>Construa uma Vizinhança Melhor, Juntos</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <i class="icon-security"></i>
+        <h3>Segurança e Confiança</h3>
+        <p>Todos os membros são da sua comunidade. A ajuda acontece entre vizinhos, criando um ambiente mais seguro e familiar.</p>
+      </div>
+      <div class="benefit-card">
+        <i class="icon-connection"></i>
+        <h3>Conexão Humana</h3>
+        <p>Vá além do "bom dia". Conheça as pessoas que moram ao seu lado e fortaleça os laços da sua comunidade.</p>
+      </div>
+      <div class="benefit-card">
+        <i class="icon-simplicity"></i>
+        <h3>Simplicidade e Praticidade</h3>
+        <p>Pedir ou oferecer ajuda leva menos de um minuto. Uma plataforma intuitiva feita para ser fácil de usar por todos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta-section">
+  <div class="container">
+    <h2>Pronto para fazer a diferença na sua vizinhança?</h2>
+    <a (click)="openRegisterDialog()" class="btn btn-primary btn-large">Comece agora, é grátis!</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-about">
+        <h4>Vizinhança Gente Boa</h4>
+        <p>Conectando vizinhos para uma comunidade mais forte e solidária.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/auth/login">Login</a></li>
+          <li><a routerLink="/auth/register">Cadastre-se</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Vizinhança Gente Boa. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>

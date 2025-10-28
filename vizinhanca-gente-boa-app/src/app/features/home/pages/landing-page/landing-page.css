@@ -1,7 +1,12 @@
+/* ==========================================================================
+   Estilos Gerais da Página (Cabeçalho, Hero, Botões)
+   ========================================================================== */
+
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo */
   padding: 1rem 2rem;
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-border);
@@ -18,6 +23,12 @@
   padding: 4rem 1rem;
 }
 
+.hero-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
 .btn {
   text-decoration: none;
   padding: 0.75rem 1.5rem;
@@ -26,6 +37,7 @@
   margin-left: 1rem;
   transition: background-color 0.2s ease;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -51,22 +63,233 @@
   display: inline-block;
 }
 
-@media (max-width: 600px) {
+/* ==========================================================================
+   Estilos Profissionais para o Carrossel Swiper com Imagens
+   ========================================================================== */
 
+:host {
+  --swiper-theme-color: var(--color-accent);
+  --swiper-navigation-color: var(--color-primary);
+  --swiper-navigation-size: 30px;
+}
+
+.carousel-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #FAFBFC;
+}
+
+.carousel-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: var(--color-text);
+}
+
+swiper-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+swiper-slide {
+  padding: 1rem 0;
+}
+
+.slide-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.slide-image, .slide-text {
+  flex: 1;
+  width: 50%;
+}
+
+.slide-image img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.slide-content.reverse {
+  flex-direction: row-reverse;
+}
+
+.slide-text {
+  text-align: left;
+}
+
+.slide-text h3 {
+  color: var(--color-primary);
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.slide-text p {
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Estilos para as Seções Adicionais
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.benefits-section {
+  padding: 4rem 0;
+  background-color: var(--color-background);
+}
+.benefits-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.benefit-card {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.benefit-card h3 {
+  color: var(--color-primary);
+  margin: 1rem 0;
+}
+
+.testimonials-section {
+  padding: 4rem 0;
+}
+.testimonials-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.testimonial-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+.testimonial-card blockquote {
+  font-style: italic;
+  color: #546E7A;
+  margin: 0;
+  max-width: 400px;
+}
+.testimonial-card cite {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.final-cta-section {
+  padding: 4rem 0;
+  background-color: var(--color-primary);
+  text-align: center;
+  color: var(--color-white);
+}
+.final-cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.site-footer {
+  padding: 3rem 0;
+  background-color: #37474F;
+  color: #CFD8DC;
+  height: 250px;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #546E7A;
+}
+.footer-about, .footer-links {
+  flex: 1;
+  min-width: 250px;
+}
+.footer-about h4, .footer-links h4 {
+  color: var(--color-white);
+}
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-links li a {
+  color: #CFD8DC;
+  text-decoration: none;
+  line-height: 2;
+}
+.footer-links li a:hover {
+  color: var(--color-accent);
+}
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .slide-content,
+  .slide-content.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+  .slide-text {
+    text-align: center;
+  }
+  .slide-image, .slide-text {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
   .main-header {
     flex-direction: column;
-    gap: 1rem; 
+    gap: 1rem;
   }
-
   .main-header nav {
     display: flex;
   }
-
   .hero-section {
     padding: 2rem 1rem;
   }
-
-  h1 {
-    font-size: 1.8rem; 
+  .hero-section h1 {
+    font-size: 1.8rem;
+    line-height: 1.4;
   }
 }

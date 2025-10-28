@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="auth-container">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Vizinhança Gente Boa</mat-card-title>
@@ -10,6 +10,13 @@
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" type="email" placeholder="seu@email.com">
+            @if (email?.errors?.['required']) {
+                <mat-error>O email é obrigatório.</mat-error>
+            }
+            @if (email?.errors?.['email']) {
+                <mat-error>Por favor, digite um email válido.</mat-error>
+            }
+
         </mat-form-field>
 
         <mat-form-field appearance="outline">

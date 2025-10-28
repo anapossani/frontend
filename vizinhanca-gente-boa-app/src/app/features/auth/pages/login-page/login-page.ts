@@ -6,7 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login-page',
@@ -31,7 +32,8 @@ export class LoginPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public dialogRef: MatDialogRef<LoginPage>    
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,10 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       senha_hash: ['', [Validators.required]]
     });
+  }
+
+  get email() {
+    return this.loginForm.get('email');
   }
 
   onSubmit(): void {
@@ -52,6 +58,7 @@ export class LoginPage implements OnInit {
       next: (response) => {
         console.log('Login bem-sucedido!', response);
         localStorage.setItem('authToken', response.token);
+        this.dialogRef.close();
         this.router.navigate(['/pedidos']);
       },      
       error: (err) => {
