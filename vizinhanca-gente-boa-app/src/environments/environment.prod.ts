@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://vizinhanca-gente-boa-dev.up.railway.app/api' 
+  apiUrl: 'https://vizinhanca-gente-boa.onrender.com/api' 
 };
+

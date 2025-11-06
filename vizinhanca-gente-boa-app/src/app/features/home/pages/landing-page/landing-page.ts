@@ -17,23 +17,22 @@ export class LandingPage {
   constructor(public dialog: MatDialog) { }
 openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginPage, {
-      width: '450px', 
+      width: '520px', 
       panelClass: 'auth-dialog-container' 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('O modal de login foi fechado');
     });
   }
 
   openRegisterDialog(): void {
     const dialogRef = this.dialog.open(RegisterPage, {
-      width: '450px',
+      width: '520px',
       panelClass: 'auth-dialog-container'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('O modal de cadastro foi fechado');
+
     });
   }
 

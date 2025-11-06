@@ -67,3 +67,19 @@ mat-card-actions a {
 mat-card-actions a:hover {
   text-decoration: underline;
 }
+
+.button-wrapper {
+  position: relative; 
+  display: block;
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-wrapper button[disabled] {
+  cursor: not-allowed;
+}

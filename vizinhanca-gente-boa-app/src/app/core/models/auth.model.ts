@@ -1,7 +1,7 @@
 
 export interface LoginDto {
   email: string;
-  senha_hash: string; 
+  senha: string; 
 }
 
 export interface TokenResponse {
