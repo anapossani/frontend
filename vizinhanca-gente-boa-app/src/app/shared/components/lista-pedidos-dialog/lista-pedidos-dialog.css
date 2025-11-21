@@ -1,0 +1,124 @@
+/* --- Cabeçalho do Dialog (Mantido igual, pois funciona bem) --- */
+.dialog-title {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 16px 24px; 
+  border-bottom: 1px solid #eee; 
+}
+
+.dialog-title h2 {
+  margin: 0; font-size: 1.5rem; font-weight: 500; color: #333; 
+}
+
+.dialog-title button {
+  width: 40px; height: 40px; line-height: 40px; border-radius: 50%;
+  color: #555; border: none; background: transparent; cursor: pointer;
+}
+.dialog-title button:hover { background-color: #f0f0f0; }
+
+/* --- Área de Conteúdo --- */
+mat-dialog-content {
+  padding: 24px; /* Voltamos com padding pois o accordion precisa respirar */
+  max-height: 70vh; 
+  overflow-y: auto;
+  background-color: #fafafa; /* Um cinza muito sutil no fundo destaca os cartões brancos */
+}
+
+/* --- O Accordion em si --- */
+mat-accordion {
+  display: block;
+  width: 100%;
+}
+
+/* --- O Cartão (Expansion Panel) --- */
+mat-expansion-panel {
+  margin-bottom: 16px; /* Espaço entre os pedidos */
+  border-radius: 8px !important; /* Cantos arredondados modernos */
+  
+  /* TRUQUE VISUAL: Removemos a sombra pesada padrão do Material */
+  box-shadow: none !important; 
+  /* Adicionamos uma borda fina e uma sombra muito leve */
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+/* Efeito sutil quando passa o mouse ou expande */
+mat-expansion-panel:hover, mat-expansion-panel.mat-expanded {
+  border-color: #3f51b5; /* Borda fica da cor da marca */
+  box-shadow: 0 4px 12px rgba(63, 81, 181, 0.08) !important; /* Sombra colorida suave */
+}
+
+/* --- Cabeçalho do Painel --- */
+mat-expansion-panel-header {
+  padding: 8px 24px; /* Altura confortável */
+  font-size: 1rem;
+}
+
+/* Título do Pedido (Esquerda) */
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  color: #333;
+  flex-basis: 60%; /* Garante espaço para o título */
+}
+
+/* Ícone no título para dar identidade visual */
+mat-panel-title mat-icon {
+  color: #3f51b5;
+}
+
+/* Descrição/Status (Direita) */
+mat-panel-description {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Empurra para direita */
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* --- Conteúdo Interno (Ao expandir) --- */
+.painel-conteudo {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.painel-conteudo p {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* Estilo para o Input/Textarea dentro do painel */
+mat-form-field {
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+/* --- Rodapé de Ação (Mat-Action-Row) --- */
+mat-action-row {
+  padding: 16px 24px !important;
+  border-top: 1px solid #f5f5f5; /* Separação sutil */
+  display: flex;
+  justify-content: flex-end; /* Botões à direita */
+  gap: 8px;
+}
+
+/* Ajuste nos botões da action row para ficarem alinhados */
+mat-action-row button {
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* --- Empty State (Caso não tenha pedidos) --- */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  font-style: italic;
+}

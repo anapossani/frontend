@@ -1,0 +1,50 @@
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+form fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  margin-bottom: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.button-wrapper {
+  position: relative;
+}
+.spinner-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.create-option {
+  display: flex;
+  align-items: center;
+  color: var(--color-primary);
+  font-style: italic;
+}
+.create-option mat-icon {
+  margin-right: 8px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}

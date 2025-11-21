@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; 
+  background-color: var(--color-background);
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  background-color: var(--color-background);
+}
+
+:host.is-landing .main-content {
+  display: contents; 
+}

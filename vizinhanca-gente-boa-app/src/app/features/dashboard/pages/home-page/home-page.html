@@ -1,0 +1,85 @@
+@if (isLoading) {
+  <div class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Carregando  dashboard...</p>
+  </div>
+} @else if (data) {
+  <div class="dashboard-container">
+    
+    <mat-card class="welcome-card">
+      <mat-card-header>
+        <mat-card-title class="welcome-title">Olá, {{ data.nomeUsuario }}!</mat-card-title>
+        <mat-card-subtitle>O que você gostaria de fazer hoje?</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions class="main-actions">
+        <button mat-flat-button color="primary" routerLink="/pedidos/novo">
+          Fazer um Pedido de Ajuda
+        </button>
+        <button mat-flat-button color="accent" routerLink="/pedidos">
+          Ajudar Alguém
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-card-title class="stat-number">{{ data.stats.pedidosCriados }}</mat-card-title>
+          <mat-card-subtitle>Pedidos Criados</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-card-title class="stat-number">{{ data.stats.ajudasOferecidas }}</mat-card-title>
+          <mat-card-subtitle>Ajudas Oferecidas</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <h2 class="section-title">Suas Tarefas</h2>
+    <div class="tasks-grid">
+      <mat-card class="task-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar color="accent">checklist</mat-icon>         
+          <mat-card-subtitle>Vizinhos se ofereceram para ajudar em seus pedidos.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-button color="primary"  (click)="abrirPedidosAprovacao()" >Ver Pedidos</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card class="task-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar color="primary">task_alt</mat-icon>
+          <mat-card-title>Pedidos em Andamento</mat-card-title>
+          <mat-card-subtitle>Marque como concluído após receber a ajuda.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-button color="primary" (click)="abrirModalMeusPedidos()"> Ver Pedidos</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <h2 class="section-title">Atividade Recente nos Seus Pedidos</h2>
+    <mat-card class="recent-activity-card">
+      <mat-list role="list">
+        @for (pedido of data.ultimosPedidos; track pedido.id) {
+          <a mat-list-item (click)="abrirDetalhesPedido(pedido.id)" class="activity-item">
+            <div matListItemTitle class="item-title">{{ pedido.titulo }}</div>
+            <div matListItemLine class="item-details">
+              <span>Status: <span class="status status-{{pedido.status}}">{{ pedido.status }}</span></span>
+              <span> Comentários: {{ pedido.contagemComentarios }} </span>
+              <span> Participações Oferecidas:  {{ pedido.contagemParticipacoes }} </span>
+            </div>
+          </a>
+          <mat-divider></mat-divider>
+        } @empty {
+          <p class="empty-state">Você ainda não criou nenhum pedido.</p>
+        }
+      </mat-list>
+    </mat-card>
+
+  </div>
+} @else {
+  
+}

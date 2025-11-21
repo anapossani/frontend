@@ -31,6 +31,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatSelectModule, 
     MatAutocompleteModule,
     MatProgressSpinnerModule
+
   ],
   templateUrl: './register-page.html',
   styleUrl: './register-page.css' 
@@ -42,14 +43,14 @@ export class RegisterPage implements OnInit {
   todasCidades: string[] = [];
   cidadesFiltradas!: Observable<string[]>;
   isLoading = false;
-  //private snackBar: MatSnackBar ;    
-
+  
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
     public dialogRef: MatDialogRef<RegisterPage>,
-    private localidadeService: LocalidadeService
+    private localidadeService: LocalidadeService,
+    private snackBar: MatSnackBar     
   ) {}
 
   get email() { return this.registerForm.get('email'); }
@@ -100,21 +101,25 @@ export class RegisterPage implements OnInit {
 
     finalize(() => {
        this.isLoading = false;
-       this.dialogRef.disableClose = false; // <<-- REABILITA O FECHAMENTO (importante!)
+       this.dialogRef.disableClose = false; 
     })
 
     ).subscribe({
       next: (newUser) => {
         console.log('Cadastro realizado com sucesso!', newUser);
-          /*this.snackBar.open('Usuário cadastrado com sucesso!', 'Fechar', {
-          duration: 3000, 
+          this.snackBar.open('Usuário cadastrado com sucesso!', 'Fechar', {
+          //duration: 3000, 
           verticalPosition: 'top', 
           panelClass: ['success-snackbar'] 
-        });        */
+        });        
         this.dialogRef.close({ registered: true });
       },
       error: (err) => {
-        console.error('Erro no cadastro:', err);
+         this.snackBar.open('Falha no cadastro. Verifique os dados.', 'Fechar', {
+         // duration: 5000,
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar'] 
+        });
         this.registerError = 'Não foi possível realizar o cadastro. Verifique os dados ou tente novamente mais tarde.';
       }
     });

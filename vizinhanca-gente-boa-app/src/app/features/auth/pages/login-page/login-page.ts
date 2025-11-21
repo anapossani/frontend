@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      senha_hash: ['', [Validators.required]]
+      senha: ['', [Validators.required]]
     });
   }
 
@@ -57,9 +57,9 @@ export class LoginPage implements OnInit {
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         console.log('Login bem-sucedido!', response);
-        localStorage.setItem('authToken', response.token);
+        this.authService.saveToken(response.token); 
         this.dialogRef.close();
-        this.router.navigate(['/pedidos']);
+        this.router.navigate(['/dashboard']); ;
       },      
       error: (err) => {
         console.error('Erro no login:', err);

@@ -1,0 +1,114 @@
+@if (pedido$ | async; as pedido) {
+  <div mat-dialog-title class="dialog-title">
+    <h2>Detalhes do Pedido</h2>
+    <button mat-icon-button (click)="onClose()" class="close-button" title="Fechar" [disabled]="isLoading$ | async">      
+    </button>
+  </div>
+
+  <mat-dialog-content class="dialog-content">
+    <div class="pedido-meta">
+      <div class="meta-item">
+        <span class="label"><mat-icon>person_outline</mat-icon> Pedido por:</span>
+        <span class="value">{{ pedido.usuario }}</span>
+      </div>
+      <div class="meta-item">
+        <span class="label"><mat-icon>category</mat-icon> Categoria:</span>
+        <span class="value">{{ pedido.categoria }}</span>
+      </div>
+    </div>
+    <p class="pedido-description">{{ pedido.descricao }}</p>
+
+    <div class="comments-section">
+      <h4 class="section-title">Comentários ({{ pedido.comentarios?.length || 0 }})</h4>
+
+        <mat-list>
+        @for (comentario of pedido.comentarios; track comentario.id) {
+          <mat-list-item class="comment-item">
+            <div matListItemTitle><strong>{{ comentario.usuario }}</strong></div>
+            <div matListItemLine class="comment-text">{{ comentario.mensagem }}</div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        } @empty {
+          <p class="empty-state">Seja o primeiro a comentar!</p>
+        }
+      </mat-list>    
+      
+      @if (isPedidoAtivo(pedido.status)) {      
+          <form class="new-comment-form" [formGroup]="commentForm" (ngSubmit)="onAddComment(pedido.id)">
+            <mat-form-field appearance="outline">
+              <mat-label>Deixe um comentário...</mat-label>
+              <textarea matInput formControlName="mensagem" rows="3"></textarea>
+              @if (commentForm.get('mensagem')?.hasError('required') && commentForm.get('mensagem')?.touched) {
+                <mat-error>O comentário não pode estar vazio.</mat-error>
+              }
+            </mat-form-field>
+            
+            <div class="button-wrapper comment-button-wrapper">
+              <button mat-flat-button color="primary" type="submit" [disabled]="commentForm.invalid || isLoadingAcao">
+                @if (isLoadingAcao) {
+                  <span>Enviando...</span>
+                } @else {
+                  <span>Enviar</span>
+                }
+              </button>
+              @if (isLoadingAcao) {
+                <mat-progress-spinner class="spinner-overlay" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
+              }
+            </div>
+          </form>
+        } @else {
+          <div class="closed-state-message">
+            <mat-icon>lock</mat-icon>
+            <span>Este pedido está {{ pedido.status |statusPedido}} e não aceita novos comentários.</span>
+          </div>
+        }    
+ 
+    </div>
+  </mat-dialog-content>
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-stroked-button (click)="onClose()" [disabled]="isLoadingAcao">Voltar</button>
+
+  @if (!isOwner) {
+    <div class="button-wrapper">
+      @if (isPedidoAtivo(pedido.status)) {
+        <button mat-flat-button color="accent" (click)="onQueroAjudar(pedido.id)" [disabled]="isLoadingAcao">
+          @if (isLoadingAcao) {
+            <span>Enviando...</span>
+          } @else {
+            <mat-icon>volunteer_activism</mat-icon>
+            <span>Quero Ajudar</span>
+          }
+        </button>
+      }  
+      @if (isLoadingAcao) {
+        <mat-progress-spinner class="spinner-overlay" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
+      }
+    </div>
+  }
+
+  @if (isOwner) {
+  <div class="owner-actions">
+    @if (isPedidoAtivo(pedido.status)) {
+        <button mat-stroked-button color="warn" 
+                (click)="onCancelarPedido(pedido.id)" 
+                [disabled]="isLoadingAcao">
+          Cancelar Pedido
+        </button>
+        
+        <button mat-flat-button color="primary"
+                (click)="onConcluirPedido(pedido.id)"
+                [disabled]="isLoadingAcao">
+          Marcar como Concluído
+        </button>
+      }    
+    </div>
+  }
+
+</mat-dialog-actions>
+
+} @else {
+  <div class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Carregando detalhes do pedido...</p>
+  </div>
+}

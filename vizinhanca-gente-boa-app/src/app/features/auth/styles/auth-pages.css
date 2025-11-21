@@ -83,3 +83,27 @@ mat-card-actions a:hover {
 .button-wrapper button[disabled] {
   cursor: not-allowed;
 }
+
+.success-snackbar {
+  background-color: #4CAF50; 
+  color: white;
+}
+
+.success-snackbar .mat-mdc-button.mat-mdc-snack-bar-action {
+  color: white;
+}
+
+fieldset {
+  border: none; 
+  padding: 0;   
+  margin: 0;    
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-content {
+  padding: 0 1rem 1rem 1rem; 
+}

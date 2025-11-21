@@ -1,0 +1,89 @@
+:host {
+  display: block;
+}
+
+.dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  margin: 0;
+  padding: 1rem 1.5rem;
+}
+
+.dialog-title h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+.dialog-content {
+  padding: 1.5rem;
+}
+
+.dialog-actions {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.pedido-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1rem; 
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.pedido-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column; 
+}
+
+.meta-item .label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #78909C;
+  margin-bottom: 4px;
+}
+
+.meta-item .value {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.pedido-description {
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-top: 1.5rem;
+}
+
+mat-divider {
+  margin: 1.5rem 0;
+}
+
+
+.new-comment-form mat-form-field {
+  width: 100%;
+}
+
+.closed-state-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 1rem;
+  background-color: #f5f5f5; /* Um fundo cinza claro */
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  color: #757575; /* Um texto cinza */
+  font-style: italic;
+}

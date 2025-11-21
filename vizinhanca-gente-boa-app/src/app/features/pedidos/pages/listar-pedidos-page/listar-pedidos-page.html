@@ -1,0 +1,31 @@
+<div class="page-container">
+  <h1 class="page-title">Pedidos de Ajuda na sua Vizinhança</h1>
+
+  @if (pedidos$ | async; as pedidos) {
+    <div class="pedidos-grid">
+      @for (pedido of pedidos; track pedido.id) {
+        <mat-card class="pedido-card">
+          <mat-card-header>
+            <mat-card-title>{{ pedido.titulo }}</mat-card-title>
+            <mat-card-subtitle>Por: {{ pedido.usuario }} | Categoria: {{ pedido.categoria }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-button color="primary" (click)="abrirDetalhes(pedido.id)">Ver Detalhes</button>
+            <button mat-flat-button color="accent" 
+                    [disabled]="isLoading$ | async" 
+                    (click)="onQueroAjudar(pedido.id)">
+              Quero Ajudar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+
+      } @empty {
+        <p class="empty-state">Nenhum pedido de ajuda disponível no momento.</p>
+      }
+    </div>
+  } @else {
+    <div class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  }
+</div>

@@ -1,0 +1,21 @@
+<mat-toolbar class="main-header">
+  <div class="logo">
+    <a routerLink="/dashboard">Vizinhança Gente Boa</a>
+  </div>
+  <div class="navigation-items">
+    <a mat-button routerLink="/dashboard">Dashboard</a>
+    <a mat-button routerLink="/pedidos/novo">Novo Pedido</a>
+    <a mat-button routerLink="/pedidos">Buscar Ajuda</a>
+  </div>
+  <span class="spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>exit_to_app </mat-icon>
+      <button mat-button color="primary" (click)= "sair()"> Sair </button>
+      
+    </button>
+  </mat-menu>
+</mat-toolbar>

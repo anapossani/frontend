@@ -15,3 +15,8 @@ export interface Usuario {
   bairro: string
   
 }
+
+export interface UsuarioResumo {
+  id: number;
+  nome: string;
+}

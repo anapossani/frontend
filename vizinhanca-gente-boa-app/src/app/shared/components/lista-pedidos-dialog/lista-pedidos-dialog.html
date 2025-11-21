@@ -1,0 +1,47 @@
+<mat-dialog-content>
+  @if (pedidos$ | async; as pedidos) {
+    @if (pedidos.length > 0) {
+  <mat-accordion #accordion="matAccordion" multi="false">
+      @for (pedido of pedidos; track pedido.id) {
+        
+        <mat-expansion-panel>
+          
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>shopping_cart</mat-icon>
+              <span>{{ pedido.titulo }}</span>
+            </mat-panel-title>
+            <mat-panel-description>
+              Clique para concluir
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="painel-conteudo">
+             <p>Como foi a ajuda recebida? Deixe um comentário.</p>
+             
+             <mat-form-field appearance="outline">
+               <mat-label>Comentário (Opcional)</mat-label>
+               <textarea matInput rows="3" placeholder="Ex: O vizinho foi super rápido..."></textarea>
+             </mat-form-field>
+          </div>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="accordion.closeAll()">Cancelar</button>
+            <button mat-flat-button color="primary" (click)="concluirPedido(pedido.id)">
+              <mat-icon>check</mat-icon> Concluir
+            </button>
+          </mat-action-row>
+
+        </mat-expansion-panel>
+
+      }
+    </mat-accordion>
+    } @else {
+      <p class="empty-state">Você não possui pedidos aguardando aprovação.</p>
+    }
+  } @else {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
+</mat-dialog-content>

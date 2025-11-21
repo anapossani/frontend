@@ -1,0 +1,68 @@
+<div class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Crie um Novo Pedido de Ajuda</mat-card-title>
+      <mat-card-subtitle>Descreva o que você precisa. Um vizinho pode ajudar!</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="novoPedidoForm" (ngSubmit)="onSubmit()">
+        <fieldset [disabled]="isLoading">
+          <mat-form-field appearance="outline">
+            <mat-label>Título do Pedido</mat-label>
+            <input matInput formControlName="titulo" placeholder="Ex: Preciso de ajuda para carregar compras">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Descrição Detalhada</mat-label>
+            <textarea matInput formControlName="descricao" rows="5" placeholder="Descreva com detalhes o que você precisa, onde, quando, etc."></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Categoria</mat-label>
+            <input type="text"
+                   placeholder="Digite para buscar ou criar uma categoria"
+                   matInput
+                   formControlName="categoria"
+                   [matAutocomplete]="autoCat">
+            
+            <mat-autocomplete #autoCat="matAutocomplete" 
+                              [displayWith]="displayCategoria"
+                              (optionSelected)="onCategoriaSelected($event)">
+              
+              @for (option of categoriasFiltradas$ | async; track option) {
+                <mat-option [value]="option">
+                  @if (typeof option === 'string') {
+                    <div class="create-option">
+                      <mat-icon>add_circle_outline</mat-icon>
+                      <span>{{ option }}</span>
+                    </div>
+                  } @else {
+                    {{ option.nome }}
+                  }
+                </mat-option>
+              }
+            </mat-autocomplete>
+          </mat-form-field>
+          
+        </fieldset>
+
+        <div class="form-actions">
+          <button mat-stroked-button type="button" (click)="onCancel()" [disabled]="isLoading">Cancelar</button>
+          
+          <div class="button-wrapper">
+            <button mat-flat-button color="primary" type="submit" [disabled]="novoPedidoForm.invalid || isLoading">
+              @if (isLoading) {
+                <span>Publicando...</span>
+              } @else {
+                <span>Publicar Pedido</span>
+              }
+            </button>
+            @if (isLoading) {
+              <mat-progress-spinner class="spinner-overlay" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
+            }
+          </div>
+        </div>
+        
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
